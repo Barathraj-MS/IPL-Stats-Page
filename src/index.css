@@ -5,8 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    background-image: url('https://wallpaperaccess.com/full/2302746.jpg');
+    background-size: cover;
+    backdrop-filter: blur(8px);
+    height: 100vh;
+    width: 100%;
 }
-
+#root {
+  padding-top: 20px;
+  margin: 0 200px 0 200px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
