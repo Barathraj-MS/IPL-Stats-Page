@@ -31,14 +31,14 @@ function Popdown(){
 }
 function App() {
   return (
-    <body>
+    <div className="body">
     <div className="sub">
     <div className="App">
      <Button/>
         <Popdown/>
     </div>
     </div>
-    </body>
+    </div>
   );
 }
 
