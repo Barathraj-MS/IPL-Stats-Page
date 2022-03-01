@@ -1,4 +1,4 @@
-import mysql from 'mysql2'
+let mysql = require('mysql2')
 
 let connection = mysql.createConnection({
     host: 'localhost',
@@ -12,4 +12,6 @@ connection.connect(function(err){
     console.log("Connected Successfully to the database");
 });
 
-export default connection
+module.exports = {
+    connection: connection
+}
