@@ -14,8 +14,8 @@ let csvStream = fastcsv
     // create a new connection to the database
     const connection = mysql.createConnection({
       host: "localhost",
-      user: "root",
-      password: "0040",
+      user: 'root',
+    password: '0040',
       database: "ipl"
     });
     // open the connection

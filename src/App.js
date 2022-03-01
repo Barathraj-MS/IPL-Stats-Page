@@ -1,9 +1,14 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, NavLink, Switch,useNavigate} from 'react-router-dom'
 function Button(){
+    const history = useNavigate();
+  
+    const statsPage = () => {
+        history("/stats")
+    }
     return(
         <div className="Container">
-            <button className="cssbuttons-io-button" >STATS
+            <button className="cssbuttons-io-button" onClick={statsPage}>STATS
                 <div className="icon">
                     <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0h24v24H0z" fill="none"></path>

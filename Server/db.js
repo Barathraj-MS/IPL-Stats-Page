@@ -1,7 +1,6 @@
+let mysql = require('mysql2')
 
-import { createConnection } from 'mysql2';
-
-let connection = createConnection({
+let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '0040',
@@ -13,4 +12,6 @@ connection.connect(function(err){
     console.log("Connected Successfully to the database");
 });
 
-export default connection;
+module.exports = {
+    connection: connection
+}
