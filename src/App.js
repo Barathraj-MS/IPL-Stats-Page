@@ -15,27 +15,13 @@ function Button(){
         </div>
     )
 }
-function Popdown(){
-    return(
-        <div className="Menu">
-            <ul>
-                <li><a href="#">Login/Register</a>
-                    <ul>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
-                    </ul>
-                </li>
-                </ul>
-        </div>
-    )
-}
+
 function App() {
   return (
     <div className="body">
     <div className="sub">
     <div className="App">
      <Button/>
-        <Popdown/>
     </div>
     </div>
     </div>
