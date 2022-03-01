@@ -50,7 +50,11 @@ function SideBar(props)
     }
     return(<div className='sideBar'>
       <div className='sideBarRow'>
+<<<<<<< HEAD
       <div id="second" className="buttonBox">
+=======
+      <div id="second" class="buttonBox">
+>>>>>>> b464f38fe512dbad8a2ce02b20576a5831666ea7
         <button onClick={batting_call}>BATTING</button>
         <div className="border"></div>
         <div className="border"></div>
