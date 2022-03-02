@@ -3,9 +3,11 @@ import React, {useState} from 'react';
 import { ReactDOM } from 'react';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom'
 const batting_true=true;
+var glob_bool = true;
+const table_bool = true;
 function NavBar(){
   return(	<header className="header">
-  <h1 className="logo">IPL</h1>
+  <h1 className="logo"><a href="#">IPL</a></h1>
     <ul className="main-nav">
         <li><a href="#">SCHEDULE</a></li>
         <li><a href="#">FEED</a></li>
@@ -39,34 +41,26 @@ function ListItems(props){
 }
 function SideBar(props)
 {
-    const [batting, setBatting]= useState(props.batting_true);
-    function batting_call(){
-      setBatting(true);
-      console.log(batting);
-    }
-    function bowling(){
-      setBatting(false);
-      console.log(batting);
-    }
     return(<div className='sideBar'>
         <div className='sideBarRow'>
         <div id="second" className="buttonBox">
-        <button onClick={batting_call}>BATTING</button>
+        <button onClick={props.battingcall}>BATTING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
       <div id="second" className="buttonBox">
-        <button onClick={bowling}>BOWLING</button>
+        <button onClick={props.bowlingcall}>BOWLING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
       </div>
-      <ListItems battingorbowling={batting}/>
+      <ListItems battingorbowling={props.batting_true}/>
       </div>);
 }
 function List(props)
 {
   if(props.batting_true===true){
+    console.log("Batting table:"+ glob_bool);
     return(<div className='listTable'>
     <table class="styled-table">
     <thead>
@@ -83,21 +77,36 @@ function List(props)
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="active-row">
             <td>Dom</td>
             <td>6000</td>
+            <td>Dom</td>
+            <td>6000</td>
+            <td>Dom</td>
+            <td>6000</td>
+            <td>Dom</td>
+            <td>6000</td>
+            <td>Dom</td>
         </tr>
-        <tr class="active-row">
+        <tr>
             <td>Melissa</td>
             <td>5150</td>
+            <td>Melissa</td>
+            <td>5150</td>
+            <td>Melissa</td>
+            <td>5150</td>
+            <td>Melissa</td>
+            <td>5150</td>
+            <td>Melissa</td>
         </tr>
     </tbody>
 </table>
 
       </div>);
   }
-  else{
-    return(<div className='list'>
+  if(glob_bool===false){
+    console.log("Bowling Table:");
+    return(<div className='listTable'>
     <table class="styled-table">
     <thead>
         <tr>
@@ -113,11 +122,11 @@ function List(props)
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="active-row">
             <td>Dom</td>
             <td>6000</td>
         </tr>
-        <tr class="active-row">
+        <tr >
             <td>Melissa</td>
             <td>5150</td>
         </tr>
@@ -129,9 +138,20 @@ function List(props)
   }
 function MainBody()
 {
+    const [batting, setBatting]= useState(batting_true);
+    function batting_call(){
+      setBatting(true);
+      glob_bool=true;
+      console.log(batting);
+    }
+    function bowling(){
+      setBatting(false);
+      glob_bool=false;
+      console.log(batting);
+    }
  return(<div className='flexContainer'>
-   <SideBar batting_true={batting_true}/>
-   <List batting_true={batting_true}/>
+   <SideBar batting_true={batting} battingcall={batting_call} bowlingcall={bowling}/>
+   <List batting_true={batting}/>
  </div>);
 }
 function Stats() {
@@ -144,4 +164,3 @@ function Stats() {
 }
 
 export default Stats;
-
