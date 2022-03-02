@@ -2,8 +2,8 @@ import { createConnection } from 'mysql2';
 
 let connection = createConnection({
     host: 'localhost',
-    user: 'varun',
-    password: 'Lebronbro100%',
+    user: 'root',
+    password: '0040',
     database: 'ipl'
 });
 
