@@ -13,10 +13,10 @@ let csvStream = fastcsv
     csvData.shift();
     // create a new connection to the database
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: 'root',
-    password: '0040',
-      database: "ipl"
+      host: 'localhost',
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
     });
     // open the connection
     connection.connect(error => {

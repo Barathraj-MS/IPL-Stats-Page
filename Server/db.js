@@ -1,10 +1,12 @@
 import { createConnection } from 'mysql2';
+import dotenv from "dotenv"
+dotenv.config();
 
-let connection = createConnection({
+let connection = createConnection( {
     host: 'localhost',
-    user: 'root',
-    password: '0040',
-    database: 'ipl'
+    user: process.env.USER_NAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 connection.connect(function(err){
