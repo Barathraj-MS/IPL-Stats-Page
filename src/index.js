@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Stats from './Stats'
+import Feed from './Feed/Feed'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Route, Link, NavLink, Routes} from 'react-router-dom'
 
@@ -13,7 +14,7 @@ ReactDOM.render(
             <Route path="/" element={<App />} />
             <Route path="/stats" element={<Stats />}/>
             <Route path="/schedule" />
-            <Route path="/feed" />
+            <Route path="/feed" element={<Feed />}/>
         </Routes>
     </Router>
   </React.StrictMode>,

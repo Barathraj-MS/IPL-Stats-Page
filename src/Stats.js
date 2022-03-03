@@ -11,7 +11,7 @@ function NavBar(){
   <h1 className="logo"><a href="#">IPL</a></h1>
     <ul className="main-nav">
         <li><a href="#">SCHEDULE</a></li>
-        <li><a href="#">FEED</a></li>
+        <li><a href="/feed">FEED</a></li>
     </ul>
 </header> );
 }
