@@ -1,16 +1,16 @@
-import './Feed.css';
+import './Schedule.css';
 import NavBar from '../NavBar/NavBar';
 
 
-function Feed(){
+function Schedule(){
     return (
         <div>
             <NavBar />
             <div>
-                <p>Feed page</p>
+                <p>Schedule Page</p>
             </div>
         </div>
     )
 }
 
-export default Feed;
+export default Schedule;

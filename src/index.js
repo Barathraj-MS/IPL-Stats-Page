@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Schedule from './Schedule/Schedule'
 import Stats from './Stats'
 import Feed from './Feed/Feed'
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,7 @@ ReactDOM.render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="/stats" element={<Stats />}/>
-            <Route path="/schedule" />
+            <Route path="/schedule" element={<Schedule />}/>
             <Route path="/feed" element={<Feed />}/>
         </Routes>
     </Router>
