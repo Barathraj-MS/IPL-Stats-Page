@@ -15,12 +15,23 @@ function NavBar(){
     </ul>
 </header> );
 }
+
+
 function ListItems(props){
+
+  function handlebattingStats(filterAtt) {
+    return function (e) {
+      props.toggle(true);
+      props.Setapifilter(filterAtt,true)
+    }
+  }
+  
+
   if(props.battingorbowling === true)
   {
     const arr=["MostRuns","Most4s","Most6s","Most50s","Most100s","HighestScore","StrikeRate","AverageRuns"];
     const listItems= arr.map((val,index)=><li key={index}><div id="second" className="buttonBox2">
-                                          <button className='button2'>{val}</button>
+                                          <button className='button2' onClick={handlebattingStats(val)}>{val}</button>
                                           <div className="border"></div>
                                           <div className="border"></div>
                                         </div></li>);
@@ -31,7 +42,7 @@ function ListItems(props){
   if(props.battingorbowling===false){
     const arr=["Wickets","Maiden","DotBalls","BowlingAvg","EcoRate","StrikeRate","HatTrick","FourWickets"];
     const listItems= arr.map((val,index)=><li key={index}><div id="second" className="buttonBox2">
-                                          <button className='button2'>{val}</button>
+                                          <button className='button2' onClick={()=>{props.toggle(false); props.Setapifilter(val,false)}}>{val}</button>
                                           <div className="border"></div>
                                           <div className="border"></div>
                                         </div></li>);
@@ -45,17 +56,17 @@ function SideBar(props)
     return(<div className='sideBar'>
         <div className='sideBarRow'>
         <div id="second" className="buttonBox">
-        <button onClick={() => props.toggle(true)}>BATTING</button>
+        <button onClick={() =>{ props.toggle(true); props.Setapifilter('MostRuns',true)}}>BATTING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
       <div id="second" className="buttonBox">
-        <button onClick={() => props.toggle(false)}>BOWLING</button>
+        <button onClick={()=>{props.toggle(false); props.Setapifilter('Wickets',false)}}>BOWLING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
       </div>
-      <ListItems battingorbowling={props.batting_true}/>
+      <ListItems battingorbowling={props.batting_true} toggle={props.toggle} Setapifilter={props.Setapifilter}/>
       </div>);
 }
 function Table(props){
@@ -92,28 +103,61 @@ function Table(props){
   </thead>
   <tbody>
       {props.batting_true ? props.apidata.map((val,index)=>{
-     return (<tr key={index}>
-     <td>{val.Name}</td>
-     <td>{val.MostRuns}</td>
-     <td>{val.Most4s}</td>
-     <td>{val.Most6s}</td>
-     <td>{val.Most50s}</td>
-     <td>{val.Most100s}</td>
-     <td>{val.HighestScore}</td>
-     <td>{val.StrikeRate}</td>
-     <td>{val.AverageRuns}</td>
-    </tr>)}) : props.apidata.map((val,index)=>{
-     return (<tr key={index}>
-     <td>{val.Name}</td>
-     <td>{val.Wickets}</td>
-     <td>{val.Maiden}</td>
-     <td>{val.DotBalls}</td>
-     <td>{val.BowlingAvg}</td>
-     <td>{val.EcoRate}</td>
-     <td>{val.StrikeRate}</td>
-     <td>{val.HatTrick}</td>
-     <td>{val.FourWickets}</td>
-    </tr>)})}
+        if(index===0)
+        {
+          return (<tr key={index} className="active-row">
+            <td>{val.Name}</td>
+            <td>{val.MostRuns}</td>
+            <td>{val.Most4s}</td>
+            <td>{val.Most6s}</td>
+            <td>{val.Most50s}</td>
+            <td>{val.Most100s}</td>
+            <td>{val.HighestScore}</td>
+            <td>{val.StrikeRate}</td>
+            <td>{val.AverageRuns}</td>
+           </tr>)
+        }
+        else{
+          return (<tr key={index}>
+            <td>{val.Name}</td>
+            <td>{val.MostRuns}</td>
+            <td>{val.Most4s}</td>
+            <td>{val.Most6s}</td>
+            <td>{val.Most50s}</td>
+            <td>{val.Most100s}</td>
+            <td>{val.HighestScore}</td>
+            <td>{val.StrikeRate}</td>
+            <td>{val.AverageRuns}</td>
+           </tr>)
+        }
+     }) : props.apidata.map((val,index)=>{
+       if(index===0){
+        return (<tr key={index} className="active-row">
+          <td>{val.Name}</td>
+          <td>{val.Wickets}</td>
+          <td>{val.Maiden}</td>
+          <td>{val.DotBalls}</td>
+          <td>{val.BowlingAvg}</td>
+          <td>{val.EcoRate}</td>
+          <td>{val.StrikeRate}</td>
+          <td>{val.HatTrick}</td>
+          <td>{val.FourWickets}</td>
+         </tr>)
+       }
+       else{
+        return (<tr key={index}>
+          <td>{val.Name}</td>
+          <td>{val.Wickets}</td>
+          <td>{val.Maiden}</td>
+          <td>{val.DotBalls}</td>
+          <td>{val.BowlingAvg}</td>
+          <td>{val.EcoRate}</td>
+          <td>{val.StrikeRate}</td>
+          <td>{val.HatTrick}</td>
+          <td>{val.FourWickets}</td>
+         </tr>)
+       }
+     })}
   </tbody>
 </table>
     </div> : <> </>);
@@ -132,30 +176,40 @@ function MainBody()
 {
     const [batting, setBatting]= useState(true);
     const [apires, setApi]=useState([]);
-
+    const [apifilter_batting ,setFilterBatting]=useState('MostRuns');
+    const [apifilter_bowler, setFilterBowling]=useState('Wickets')
     function toggle(val){
       if(val !== batting){
         setBatting(val);
       }
     }
-
+   function Setapifilter(apifilterval,boolval)
+   {
+    if(boolval){
+      setFilterBatting(apifilterval);   
+    }
+    else{
+      setFilterBowling(apifilterval);
+    }
+   }
     useEffect(() => {
       if(batting){
-        Axios.get("http://localhost:3002/players/batsman/?filter=MostRuns").then((response) => {
+        Axios.get(`http://localhost:3002/players/batsman/?filter=${apifilter_batting}`).then((response) => {
         setApi(response.data);
       });
       }
       else{
-        Axios.get("http://localhost:3002/players/bowlers/?filter=Wickets").then((response) => {
+        Axios.get(`http://localhost:3002/players/bowlers/?filter=${apifilter_bowler}`).then((response) => {
         setApi(response.data);
       });
       }
-    }, [batting]);
+    }, [batting,apifilter_bowler,apifilter_batting]);
  return(<div className='flexContainer'>
-   <SideBar batting_true={batting} toggle={toggle}/>
+   <SideBar batting_true={batting} toggle={toggle} Setapifilter={Setapifilter}/>
    <List batting_true={batting} apires={apires}/>
  </div>);
 }
+
 function Stats() {
   return (
     <div className="body2">

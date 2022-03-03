@@ -12,6 +12,8 @@ ReactDOM.render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="/stats" element={<Stats />}/>
+            <Route path="/schedule" />
+            <Route path="/feed" />
         </Routes>
     </Router>
   </React.StrictMode>,
