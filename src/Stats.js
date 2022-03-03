@@ -1,5 +1,6 @@
 import './Stats.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from "axios";
 import { ReactDOM } from 'react';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom'
 const batting_true=true;
@@ -29,7 +30,7 @@ function ListItems(props){
   }
   if(props.battingorbowling===false){
     const arr=["Wickets","Maiden","DotBalls","BowlingAvg","EcoRate","StrikeRate","HatTrick","FourWickets"];
-    const listItems= arr.map((val,index)=><li key={index}><div id="second" class="buttonBox2">
+    const listItems= arr.map((val,index)=><li key={index}><div id="second" className="buttonBox2">
                                           <button className='button2'>{val}</button>
                                           <div className="border"></div>
                                           <div className="border"></div>
@@ -44,12 +45,12 @@ function SideBar(props)
     return(<div className='sideBar'>
         <div className='sideBarRow'>
         <div id="second" className="buttonBox">
-        <button onClick={props.battingcall}>BATTING</button>
+        <button onClick={() => props.toggle(true)}>BATTING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
       <div id="second" className="buttonBox">
-        <button onClick={props.bowlingcall}>BOWLING</button>
+        <button onClick={() => props.toggle(false)}>BOWLING</button>
         <div className="border"></div>
         <div className="border"></div>
       </div>
@@ -57,101 +58,102 @@ function SideBar(props)
       <ListItems battingorbowling={props.batting_true}/>
       </div>);
 }
+function Table(props){
+  console.log(props.apidata);
+  return(props.batting_true !== undefined ? <div className='listTable'>
+  <table className="styled-table">
+  <thead>
+    {
+      props.batting_true ? 
+      (<tr>
+          <th>Name</th>
+          <th>MostRuns</th>
+          <th>Most4s</th>
+          <th>Most6s</th>
+          <th>Most50s</th>
+          <th>Most100s</th>
+          <th>HighestScore</th>
+          <th>StrikeRate</th>
+          <th>AverageRuns</th>
+      </tr>) : (
+        <tr>
+        <th>Name</th>
+        <th>Wickets</th>
+        <th>Maiden</th>
+        <th>DotBalls</th>
+        <th>BowlingAvg</th>
+        <th>EcoRate</th>
+        <th>StrikeRate</th>
+        <th>HatTrick</th>
+        <th>FourWickets</th>
+    </tr>
+      )
+    }
+  </thead>
+  <tbody>
+      {props.batting_true ? props.apidata.map((val,index)=>{
+     return (<tr key={index}>
+     <td>{val.Name}</td>
+     <td>{val.MostRuns}</td>
+     <td>{val.Most4s}</td>
+     <td>{val.Most6s}</td>
+     <td>{val.Most50s}</td>
+     <td>{val.Most100s}</td>
+     <td>{val.HighestScore}</td>
+     <td>{val.StrikeRate}</td>
+     <td>{val.AverageRuns}</td>
+    </tr>)}) : props.apidata.map((val,index)=>{
+     return (<tr key={index}>
+     <td>{val.Name}</td>
+     <td>{val.Wickets}</td>
+     <td>{val.Maiden}</td>
+     <td>{val.DotBalls}</td>
+     <td>{val.BowlingAvg}</td>
+     <td>{val.EcoRate}</td>
+     <td>{val.StrikeRate}</td>
+     <td>{val.HatTrick}</td>
+     <td>{val.FourWickets}</td>
+    </tr>)})}
+  </tbody>
+</table>
+    </div> : <> </>);
+
+}
 function List(props)
 {
   if(props.batting_true===true){
-    console.log("Batting table:"+ glob_bool);
-    return(<div className='listTable'>
-    <table class="styled-table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>MostRuns</th>
-            <th>Most4s</th>
-            <th>Most6s</th>
-            <th>Most50s</th>
-            <th>Most100s</th>
-            <th>HighestScore</th>
-            <th>StrikeRate</th>
-            <th>AverageRuns</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="active-row">
-            <td>Dom</td>
-            <td>6000</td>
-            <td>Dom</td>
-            <td>6000</td>
-            <td>Dom</td>
-            <td>6000</td>
-            <td>Dom</td>
-            <td>6000</td>
-            <td>Dom</td>
-        </tr>
-        <tr>
-            <td>Melissa</td>
-            <td>5150</td>
-            <td>Melissa</td>
-            <td>5150</td>
-            <td>Melissa</td>
-            <td>5150</td>
-            <td>Melissa</td>
-            <td>5150</td>
-            <td>Melissa</td>
-        </tr>
-    </tbody>
-</table>
-
-      </div>);
+    return(<Table batting_true={props.batting_true} apidata={props.apires}/>);
   }
-  if(glob_bool===false){
-    console.log("Bowling Table:");
-    return(<div className='listTable'>
-    <table class="styled-table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Wickets</th>
-            <th>Maiden</th>
-            <th>DotBalls</th>
-            <th>BowlingAvg</th>
-            <th>EcoRate</th>
-            <th>StrikeRate</th>
-            <th>HatTrick</th>
-            <th>FourWickets</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="active-row">
-            <td>Dom</td>
-            <td>6000</td>
-        </tr>
-        <tr >
-            <td>Melissa</td>
-            <td>5150</td>
-        </tr>
-    </tbody>
-</table>
-
-      </div>);
+  else{
+    return(<Table batting_true={props.batting_true} apidata={props.apires}/>);
   }
   }
 function MainBody()
 {
-    const [batting, setBatting]= useState(batting_true);
-    function batting_call(){
-      setBatting(true);
-      glob_bool=true;
-      console.log(batting);
+    const [batting, setBatting]= useState(true);
+    const [apires, setApi]=useState([]);
+
+    function toggle(val){
+      if(val !== batting){
+        setBatting(val);
+      }
     }
-    function bowling(){
-      setBatting(false);
-      glob_bool=false;
-      console.log(batting);
-    }
+
+    useEffect(() => {
+      if(batting){
+        Axios.get("http://localhost:3002/players/batsman/?filter=MostRuns").then((response) => {
+        setApi(response.data);
+      });
+      }
+      else{
+        Axios.get("http://localhost:3002/players/bowlers/?filter=Wickets").then((response) => {
+        setApi(response.data);
+      });
+      }
+    }, [batting]);
  return(<div className='flexContainer'>
-   <SideBar batting_true={batting} battingcall={batting_call} bowlingcall={bowling}/>
-   <List batting_true={batting}/>
+   <SideBar batting_true={batting} toggle={toggle}/>
+   <List batting_true={batting} apires={apires}/>
  </div>);
 }
 function Stats() {

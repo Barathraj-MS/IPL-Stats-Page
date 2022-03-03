@@ -1,7 +1,9 @@
 import  connection  from './db.js';
 
 import express from 'express';
+import cors from "cors";
 const app = express();
+app.use(cors())
 
 // app.get('/players/batsman',(req,res)=>{
 //     connection.query("SELECT * FROM batsman", function(err,result){
