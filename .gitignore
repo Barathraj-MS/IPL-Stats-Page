@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 # production
@@ -22,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 Server/secrets.js
 Server/.env
+Server/auth.js
