@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Schedule from './Schedule/Schedule'
-import Stats from './Stats'
+import Stats from './Stats/Stats'
 import Feed from './Feed/Feed'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Route, Link, NavLink, Routes} from 'react-router-dom'

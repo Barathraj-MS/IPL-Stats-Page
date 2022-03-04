@@ -1,22 +1,12 @@
 import './Stats.css';
 import React, {useState, useEffect} from 'react';
 import Axios from "axios";
-import NavBar from './NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 import { ReactDOM } from 'react';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom'
 const batting_true=true;
 var glob_bool = true;
 const table_bool = true;
-// function NavBar(){
-//   return(	<header className="header">
-//   <h1 className="logo"><a href="#">IPL</a></h1>
-//     <ul className="main-nav">
-//         <li><a href="#">SCHEDULE</a></li>
-//         <li><a href="/feed">FEED</a></li>
-//     </ul>
-// </header> );
-// }
-
 
 function ListItems(props){
 
