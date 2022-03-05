@@ -18,6 +18,7 @@ function Feed(){
         })
     }, [])
 
+    
     return (
         <div>
             <NavBar />
