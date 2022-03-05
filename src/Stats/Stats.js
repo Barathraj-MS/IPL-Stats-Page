@@ -203,7 +203,7 @@ function MainBody()
 
 function Stats() {
   return (
-    <div className="body2">
+    <div className="bstat">
      <NavBar/>
      <MainBody/>
     </div>
