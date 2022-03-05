@@ -3,10 +3,7 @@ import express from 'express';
 import cors from "cors";
 import fetch from 'node-fetch';
 import { authHeader } from './auth.js';
-// const authHeader =  {
-//     'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAGuaOwEAAAAA9oVgYGjcm09nRYkzlrtHuHrqs04%3DyL56AWtCiFBFjePPHFzfAnggYZKqtPjz5RyqZOnJRNQhggNsSG',
-//     'Content-Type': 'application/json'
-// }
+
 
 const app = express();
 
