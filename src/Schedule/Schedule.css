@@ -1,7 +1,16 @@
 .content{
+    
+}
+
+.filter-bar{
+    padding: 8px;
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: end;
+}
+
+.filter-select{
+    flex-grow: 1;
+    max-width: 250px;
 }
 
 select{

@@ -26,19 +26,35 @@ app.get('/players/bowlers/', (req,res)=>{
     })
 })
 
-app.get('/schedule/all', (req,res)=>{
-    connection.query('SELECT * FROM schedule;', function(err, result){
-        if(err) throw err;
-        res.json(result);
-    })
-})
+// app.get('/schedule/all', (req,res)=>{
+//     connection.query('SELECT * FROM schedule;', function(err, result){
+//         if(err) throw err;
+//         res.json(result);
+//     })
+// })
+
+// app.get('/schedule', (req,res)=>{
+//     var category = req.query.filter;
+//     connection.query(`SELECT * FROM schedule WHERE HomeTeam LIKE '%${category}%' OR AwayTeam LIKE '%${category}%' ORDER BY MatchNumber`, function(err, result){
+//         if(err) throw err;
+//         res.json(result);
+//     })
+// })
 
 app.get('/schedule', (req,res)=>{
     var category = req.query.filter;
-    connection.query(`SELECT * FROM schedule WHERE HomeTeam LIKE '%${category}%' OR AwayTeam LIKE '%${category}%' ORDER BY MatchNumber`, function(err, result){
-        if(err) throw err;
-        res.json(result);
-    })
+    if(category=="all"){
+        connection.query('SELECT * FROM schedule', function(err, result){
+                    if(err) throw err;
+                    res.json(result);
+                })
+    }
+    else{
+        connection.query(`SELECT * FROM schedule WHERE HomeTeam LIKE '%${category}%' OR AwayTeam LIKE '%${category}%' ORDER BY MatchNumber`, function(err, result){
+                    if(err) throw err;
+                    res.json(result);
+                })
+    }
 })
 
 

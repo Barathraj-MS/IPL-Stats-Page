@@ -2,70 +2,71 @@ import './Schedule.css';
 import NavBar from '../NavBar/NavBar';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import Select from 'react-select';
 
-// const options = [
-//     {
-//       label: "CSK",
-//       value: "Chennai",
-//     },
-//     {
-//       label: "RCB",
-//       value: "Bangalore",
-//     },
-//     {
-//       label: "MI",
-//       value: "Mumbai",
-//     },
-//     {
-//       label: "RR",
-//       value: "Rajastan",
-//     },
-//     {
-//         label: "DC",
-//         value: "Delhi",
-//     },
-//     {
-//         label: "PBKS",
-//         value: "Punjab",
-//     },
-//     {
-//         label: "SRH",
-//         value: "Hyderabad",
-//     },
-//     {
-//         label: "KKR",
-//         value: "Kolkata",
-//     },
-//   ];
+
+const options = [
+    {
+      label: "All",
+      value: "all",
+    },
+    {
+      label: "CSK",
+      value: "Chennai",
+    },
+    {
+      label: "RCB",
+      value: "Bangalore",
+    },
+    {
+      label: "MI",
+      value: "Mumbai",
+    },
+    {
+      label: "RR",
+      value: "Rajastan",
+    },
+    {
+        label: "DC",
+        value: "Delhi",
+    },
+    {
+        label: "PBKS",
+        value: "Punjab",
+    },
+    {
+        label: "SRH",
+        value: "Hyderabad",
+    },
+    {
+        label: "KKR",
+        value: "Kolkata",
+    },
+  ];
+
 
 function Schedule(){
     
     const [tableRow, setTableRow] = useState([]);
-    const [team, setTeam] = useState("");
+    const [team, setTeam] = useState("all");
 
     useEffect(()=>{
-        const response = axios.get('http://localhost:3002/schedule/all')
+        // setTeam(prompt("Enter your fav team city name:"));
+        console.log("updaated : ", team);
+        const response = axios.get(`http://localhost:3002/schedule/?filter=${team}`)
         .then((response)=>{
             console.log(response.data);
             setTableRow(response.data);
         })
-    }, [])
-
-    // handleChange(e){
-    //     console.log("Fruit Selected!!");
-    //     // this.setState({ fruit: e.target.value });
-    //     setTeam(e.target.value);
-    //   }
+    }, [team])
 
     return (
         <div>
-        <NavBar />
-        <div className='content'>
-            {/* <select value={team} onChange={handleChange}>
-                {options.map((option) => (
-                    <option value={option.value}>{option.label}</option>
-                ))}
-            </select> */}
+        <NavBar />  
+        <div className='content'>   
+        <div className='filter-bar'>
+         <Select className='filter-select' options={options} onChange={data=>setTeam(data.value)}/>
+        </div>
             <div className='Sch'>
                     <table>
                         <tr>
