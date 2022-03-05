@@ -20,7 +20,7 @@ app.get('/players/batsman/', (req,res)=>{
 
 app.get('/players/bowlers/', (req,res)=>{
     var category = req.query.filter;
-    connection.query(`SELECT * FROM bowlers ORDER BY ${category} DESC`, function(err,result){
+    connection.query(`SELECT * FROM bowlers WHERE ${category} <> 0 ORDER BY ${category} DESC`, function(err,result){
         if(err) throw err;
         res.json(result);
     })
