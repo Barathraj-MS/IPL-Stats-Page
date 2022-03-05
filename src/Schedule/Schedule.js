@@ -70,7 +70,7 @@ function Schedule(){
          <Select className='filter-select'  options={options} onChange={data=>setTeam(data.value)}/>
         </div>
             <div className='Sch'>
-                    <table>
+                    <table className='tableschedule'>
                         <tr>
                             <th>Match Number</th>
                             <th>Date</th>

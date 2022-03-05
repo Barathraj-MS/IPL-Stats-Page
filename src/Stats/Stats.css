@@ -130,7 +130,7 @@
   .styled-table {
     border-collapse: collapse;
     font-size: 0.9em;
-    border-radius: 1em;
+    
     font-family: sans-serif;
     min-width: 450px;
     max-width: 550px;

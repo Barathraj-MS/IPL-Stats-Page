@@ -17,16 +17,21 @@ select{
     height: 20px;
 }
 
-table{
+.tableschedule{
     margin-left: 10px;
 }
 
 /* tr{
     border: 1px solid black;
 } */
-td,th{
+.tableschedule td{
     padding: 15px 15px;
     border: 1px solid black;
     border-radius: 5px;
     
+}
+.tableschedule th{
+    padding: 15px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
