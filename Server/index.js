@@ -32,10 +32,10 @@ app.get('/players/bowlers/', (req,res)=>{
 
 
 // Below API's are for feed page...
-var tweetmeta = [];
-var tweets = [];
 async function fetchTweets(userId){
-    const response = await fetch(`https://api.twitter.com/2/users/${userId}/tweets`, {
+    var tweetmeta = [];
+    var tweets = [];
+    const response = await fetch(`https://api.twitter.com/2/users/${userId}/tweets/?max_results=10`, {
         method: 'GET',
         headers: authHeader
     })

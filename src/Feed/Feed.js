@@ -21,9 +21,9 @@ function Feed(){
         <div>
             <NavBar />
             <div>
-                <ol className="tweets">
-                    {tweets.map(tweet=><li>{tweet}</li>)}
-                </ol>
+                <ul className="tweets">
+                    {tweets.map(tweet=><li className="tweetlist">{tweet}</li>)}
+                </ul>
             </div>
         </div>
     )
