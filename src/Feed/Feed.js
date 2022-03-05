@@ -21,7 +21,7 @@ function Feed(){
     return (
         <div>
             <NavBar />
-            <div>
+            <div className='bfeed'>
                 <ul className="tweets">
                     {tweets.map(tweet=><li className="tweetlist"><div className='tweetdiv'><div className='icondiv'><SocialIcon url="https://twitter.com/jaketrent" /></div>{tweet}</div></li>)}
                 </ul> 
