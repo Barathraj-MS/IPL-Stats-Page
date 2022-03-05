@@ -24,7 +24,7 @@ const options = [
     },
     {
       label: "RR",
-      value: "Rajastan",
+      value: "Rajasthan",
     },
     {
         label: "DC",
