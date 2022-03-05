@@ -24,7 +24,7 @@ const options = [
     },
     {
       label: "RR",
-      value: "Rajastan",
+      value: "Rajasthan",
     },
     {
         label: "DC",
@@ -44,28 +44,30 @@ const options = [
     },
   ];
 
+  const title = "Schedule";
+
+
 
 function Schedule(){
     
     const [tableRow, setTableRow] = useState([]);
     const [team, setTeam] = useState("all");
 
+
     useEffect(()=>{
         // setTeam(prompt("Enter your fav team city name:"));
-        console.log("updaated : ", team);
         const response = axios.get(`http://localhost:3002/schedule/?filter=${team}`)
         .then((response)=>{
-            console.log(response.data);
             setTableRow(response.data);
         })
     }, [team])
 
     return (
         <div>
-        <NavBar />  
+        <NavBar title={title}/>  
         <div className='content'>   
         <div className='filter-bar'>
-         <Select className='filter-select' options={options} onChange={data=>setTeam(data.value)}/>
+         <Select className='filter-select'  options={options} onChange={data=>setTeam(data.value)}/>
         </div>
             <div className='Sch'>
                     <table>

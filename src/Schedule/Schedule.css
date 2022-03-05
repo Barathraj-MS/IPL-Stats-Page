@@ -1,11 +1,10 @@
-.content{
-    
-}
+
 
 .filter-bar{
     padding: 8px;
     display: flex;
     justify-content: end;
+    width: auto;
 }
 
 .filter-select{
@@ -14,5 +13,21 @@
 }
 
 select{
+    margin-top: 10px;
     height: 20px;
+}
+
+table{
+    margin-left: 10px;
+}
+
+/* tr{
+    border: 1px solid black;
+} */
+td,th{
+    padding: 15px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-spacing: ;
+    
 }

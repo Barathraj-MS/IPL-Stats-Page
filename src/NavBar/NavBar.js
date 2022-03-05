@@ -1,6 +1,7 @@
 import './NavBar.css';
 
-function NavBar(){
+function NavBar(props){
+
     return(	<header className="header">
     <h1 className="logo"><a href="#">IPL</a></h1>
       <ul className="main-nav">
