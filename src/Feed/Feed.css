@@ -1,5 +1,5 @@
 body{
-    background-color: #72efdd;
+    background-color: #aee7f8;
 }
 
 .tweets{
@@ -15,4 +15,13 @@ body{
     border-radius: 5px;
     font-family: 'Trebuchet MS', sans-serif;
     color: #80ffdb  ;
+}
+
+.icondiv{
+    margin-right: 20px;
+}
+.tweetdiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
