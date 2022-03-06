@@ -1,10 +1,21 @@
 .bfeed{
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 33px;
+    margin-bottom: 33px;
+    margin-right: 150px;
+    margin-left: 150px;
     background-color: #aee7f8;
+    box-shadow: #80ffdb;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px rgb(192, 192, 192);
 }
 
 .tweets{
+    align-self: center;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     padding: 30px;
 }   
