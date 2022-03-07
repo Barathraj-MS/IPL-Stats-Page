@@ -93,8 +93,8 @@ app.get("/news", async (req,res) => {
     const body = await (await fetch("https://www.iplt20.com/news")).text()
     const $ = cheerio.load(body);
     const whole = $('.vn-newsPge');
-    console.log(whole.html());
-    res.send(whole.html());
+    console.log(whole);
+    res.send(whole.html())
 })
 
 
