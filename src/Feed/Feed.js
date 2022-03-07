@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { SocialIcon } from 'react-social-icons';
 
 
+
 function Feed(){
 
     const [tweets ,setTweets] = useState([]);
@@ -18,15 +19,21 @@ function Feed(){
         })
     }, [])
 
+    // useEffect(()=>{
+    //     const response = axios.get('http://localhost:3002/news')
+    //     .then((response)=>{
+            
+    //     })
+    // }, [])
     
     return (
         <div>
             <NavBar />
-            <div className='bfeed'>
-                <ul className="tweets">
-                    {tweets.map(tweet=><li className="tweetlist"><div className='tweetdiv'><div className='icondiv'><SocialIcon url="https://twitter.com/jaketrent" /></div>{tweet}</div></li>)}
-                </ul> 
-            </div>
+                <div className='bfeed'>
+                    <ul className="tweets">
+                        {tweets.map(tweet=><li className="tweetlist"><div className='tweetdiv'><div className='icondiv'><SocialIcon url="https://twitter.com/jaketrent" /></div>{tweet}</div></li>)}
+                    </ul> 
+                </div>
         </div>
     )   
 }
