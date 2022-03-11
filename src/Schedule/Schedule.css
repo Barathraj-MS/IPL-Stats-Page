@@ -20,10 +20,16 @@ select{
 .tableschedule{
     margin-left: 10px;
 }
-
-/* tr{
-    border: 1px solid black;
-} */
+.Sch{
+    margin:30px;
+    box-shadow: 7px 7px rgb(221, 219, 219);
+}
+.cardHeader{
+    background-color: rgb(117, 114, 114);
+}
+.cardBody{
+   
+}
 .tableschedule td{
     padding: 15px 15px;
     border: 1px solid black;

@@ -3,7 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Select from 'react-select';
-
+import {Card} from 'react-bootstrap'
 
 const options = [
     {
@@ -52,43 +52,48 @@ function Schedule(){
     
     const [tableRow, setTableRow] = useState([]);
     const [team, setTeam] = useState("all");
-
-
+    const [color, setColor] = useState('rgb(117, 114, 114)');
+    function setVal(data){
+        const teamcolors={'ALL':'rgb(117, 114, 114)','CSK':'rgb(231, 212, 37)','RCB':'rgb(245, 60, 60)','MI':'rgb(77, 143, 241)', 'RR':'rgb(235, 64, 226)','DC':'rgb(27, 42, 180)','PBKS':'rgb(241, 110, 110)','SRH':'rgb(245, 114, 53)','KKR':'rgb(71, 33, 141)'};
+        setTeam(data.value);
+        console.log(data);
+        if(data.label==='All'){
+            setColor('rgb(117, 114, 114)');
+        }
+        else{
+            var lab=data.label;
+            setColor(teamcolors[lab]);
+        }
+    }
     useEffect(()=>{
         // setTeam(prompt("Enter your fav team city name:"));
         const response = axios.get(`http://localhost:3002/schedule/?filter=${team}`)
         .then((response)=>{
             setTableRow(response.data);
         })
-    }, [team])
+    }, [team],[color])
 
     return (
         <div>
         <NavBar title={title}/>  
         <div className='content'>   
         <div className='filter-bar'>
-         <Select className='filter-select'  options={options} onChange={data=>setTeam(data.value)}/>
+         <Select className='filter-select'  options={options} onChange={data=>setVal(data)}/>
         </div>
-            <div className='Sch'>
-                    <table className='tableschedule'>
-                        <tr>
-                            <th>Match Number</th>
-                            <th>Date</th>
-                            <th>Location</th>
-                            <th>Home Team</th>
-                            <th>Away Team</th>
-                        </tr>
-                        {tableRow.map(oruRow=>{
-                            return <tr>
-                            <td>{oruRow.MatchNumber}</td>
-                            <td>{oruRow.Dates}</td>
-                            <td>{oruRow.Location}</td>
-                            <td>{oruRow.HomeTeam}</td>
-                            <td>{oruRow.AwayTeam}</td>
-                            </tr>
-                        })}
-                    </table>
-            </div>
+            {tableRow.map(oruRow=>{
+                return <Card className='Sch'>
+                <Card.Header style={{backgroundColor : color}} className='cardHeader'>Match-{oruRow.MatchNumber} | {oruRow.Dates}</Card.Header>
+                <Card.Body   className='cardBody'>
+                    <Card.Title>{oruRow.HomeTeam} vs {oruRow.AwayTeam}</Card.Title>
+                    <Card.Text>
+                    {oruRow.Location}
+                    </Card.Text>
+                    
+                </Card.Body>
+            </Card>
+            })
+            }
+           
             </div>
         </div>
     )
