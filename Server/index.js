@@ -3,7 +3,6 @@ import express from 'express';
 import cors from "cors";
 import fetch from 'node-fetch';
 import { authHeader } from './auth.js';
-import * as cheerio from 'cheerio';
 
 
 
@@ -87,16 +86,6 @@ app.get('/getfeed', async(req,res)=>{
     const tweets = await fetchTweets(userId);
     res.send(tweets);   
 })
-
-app.get("/news", async (req,res) => {
-    // Below code is for fetching news content from ipl site
-    const body = await (await fetch("https://www.iplt20.com/news")).text()
-    const $ = cheerio.load(body);
-    const whole = $('.vn-newsPge');
-    console.log(whole);
-    res.send(whole.html())
-})
-
 
 
 app.listen(3002, ()=>{
