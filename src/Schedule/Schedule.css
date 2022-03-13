@@ -26,6 +26,7 @@ select{
 }
 .cardHeader{
     background-color: rgb(117, 114, 114);
+    color: rgb(255, 255, 255);
 }
 .cardBody{
    
