@@ -14,7 +14,7 @@ app.use(cors({origin: true}))
 // NOTE: WHILE REQUESTING FROM SITE, REQUEST USING QUERY FOR EXAMPLE: /players/batsman/?filter=MostRuns , this to get the list of players sorted on runs.
 app.get('/players/batsman/', (req,res)=>{
     var category = req.query.filter;
-    connection.query(`SELECT * FROM batsman ORDER BY ${category} DESC`, function(err,result){
+    connection.query(`SELECT * FROM batsman WHERE ${category} <> 0 ORDER BY ${category} DESC`, function(err,result){
         if(err) throw err;
         res.json(result);
     })
