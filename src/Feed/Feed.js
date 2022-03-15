@@ -31,7 +31,7 @@ function Feed(){
             <NavBar />
                 <div className='bfeed'>
                     <ul className="tweets">
-                        {tweets.map(tweet=><li className="tweetlist"><div className='tweetdiv'><div className='icondiv'><SocialIcon url="https://twitter.com/" /></div><a href='https://twitter.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'>{tweet}</a></div></li>)}
+                        {tweets.map(tweet=><li className="tweetlist"><div className='tweetdiv'><div className='icondiv'><SocialIcon url="https://twitter.com/ipl" /></div><a href='https://twitter.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'>{tweet}</a></div></li>)}
                     </ul> 
                 </div>
         </div>
