@@ -15,7 +15,7 @@ cursor.execute('CREATE TABLE bowlers(Name varchar(50) NOT NULL primary key,Wicke
 
 for row in csv_data:
     cursor.execute('INSERT INTO bowlers VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)',row)
-#close the connection to the database.
+
 mydb.commit()
 cursor.close()
 print("Done")

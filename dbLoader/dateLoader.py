@@ -15,7 +15,7 @@ cursor.execute('CREATE TABLE schedule(MatchNumber int NOT NULL primary key,Dates
 
 for row in csv_data:
     cursor.execute('INSERT INTO schedule VALUES(%s,%s,%s,%s,%s)',row)
-#close the connection to the database.
+
 mydb.commit()
 cursor.close()
 print("Done")
