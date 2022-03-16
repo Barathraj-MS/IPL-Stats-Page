@@ -54,7 +54,7 @@ function Schedule(){
     const [team, setTeam] = useState("all");
     const [color, setColor] = useState('rgb(117, 114, 114)');
     function setVal(data){
-        const teamcolors={'ALL':'rgb(117, 114, 114)','CSK':'rgb(231, 212, 37)','RCB':'rgb(245, 60, 60)','MI':'rgb(77, 143, 241)', 'RR':'rgb(235, 64, 226)','DC':'rgb(27, 42, 180)','PBKS':'rgb(241, 110, 110)','SRH':'rgb(245, 114, 53)','KKR':'rgb(71, 33, 141)'};
+        const teamcolors={'ALL':'rgb(117, 114, 114)','CSK':'rgb(231, 212, 37)','RCB':'rgb(245, 60, 60)','MI':'rgb(26,85,215,255)', 'RR':'rgb(252,68,132)','DC':'rgb(27, 42, 180)','PBKS':'rgb(124,13,19,255)','SRH':'rgb(247,111,11,255)','KKR':'rgb(54,41,79,255)'};
         setTeam(data.value);
         console.log(data);
         if(data.label==='All'){
